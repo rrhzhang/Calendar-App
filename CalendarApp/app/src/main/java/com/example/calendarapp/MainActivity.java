@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.calendarapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
+ //comment
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
