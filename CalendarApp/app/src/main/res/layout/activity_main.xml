@@ -23,13 +23,4 @@
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_text"
-        android:inputType="text"
-        android:importantForAutofill="no" />
-
-
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -12,5 +12,7 @@
     <string name="menu_exams">Exams</string>
     <string name="menu_todo">To-do</string>
     <string name="menu_notifs">Notifications</string>
-    <string name="enter_text">Enter text here!</string>
+    <string name="enter_text">Enter course name, time, and instructor
+    </string>
+    <string name="add_class_button">Add class!</string>
 </resources>
