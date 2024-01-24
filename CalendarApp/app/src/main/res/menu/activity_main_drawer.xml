@@ -17,6 +17,7 @@
             android:icon="@drawable/exams"
             android:title="@string/menu_exams" />
         <item
+            android:id="@+id/todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:title="@string/menu_todo"
