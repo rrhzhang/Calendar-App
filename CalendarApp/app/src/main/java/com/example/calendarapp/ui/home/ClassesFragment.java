@@ -1,65 +1,128 @@
 package com.example.calendarapp.ui.home;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.calendarapp.R;
-import com.example.calendarapp.databinding.FragmentClassesBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClassesFragment extends Fragment {
+public class ClassesFragment extends Fragment implements CourseItemListener {
 
-    private FragmentClassesBinding binding;
-    private Button classButton;
-    private EditText editText;
-    private ListView listView;
-    private ArrayList<String> itemList;
-    private ArrayAdapter<String> adapter;
+    private List<Classes> courseList = new ArrayList<>();
+    private ClassAdapter adapter;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_classes, container, false);
 
-        classButton = view.findViewById(R.id.class_button);
-        editText = view.findViewById(R.id.inputClasses);
-        listView = view.findViewById(R.id.class_list);
-
-        itemList = new ArrayList<>();
-        adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, itemList);
+        adapter = new ClassAdapter(requireContext(), courseList, this);
+        ListView listView = view.findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
-        classButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String newItem = editText.getText().toString().trim();
+        final EditText editCourseName = view.findViewById(R.id.editCourseName);
+        final EditText editTime = view.findViewById(R.id.editTime);
+        final EditText editInstructor = view.findViewById(R.id.editInstructor);
 
-                if (!newItem.isEmpty()) {
-                    itemList.add(newItem);
-                    adapter.notifyDataSetChanged();
-                    editText.getText().clear();
-                }
+        Button addButton = view.findViewById(R.id.addButton);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String courseName = editCourseName.getText().toString().trim();
+                String time = editTime.getText().toString().trim();
+                String instructor = editInstructor.getText().toString().trim();
+
+                Classes newCourse = new Classes();
+                newCourse.setCourse(courseName);
+                newCourse.setTime(time);
+                newCourse.setInstructor(instructor);
+
+                courseList.add(newCourse);
+
+                adapter.notifyDataSetChanged();
+
+                editCourseName.getText().clear();
+                editTime.getText().clear();
+                editInstructor.getText().clear();
             }
         });
 
         return view;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    public void onEditCourse(final int position) {
+        final Classes selectedCourse = courseList.get(position);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Edit Course");
+
+        View editView = getLayoutInflater().inflate(R.layout.edit_course_dialog, null);
+
+        final EditText editCourseName = editView.findViewById(R.id.editCourseName);
+        final EditText editTime = editView.findViewById(R.id.editTime);
+        final EditText editInstructor = editView.findViewById(R.id.editInstructor);
+
+        editCourseName.setText(selectedCourse.getCourse());
+        editTime.setText(selectedCourse.getTime());
+        editInstructor.setText(selectedCourse.getInstructor());
+
+        builder.setView(editView);
+
+        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                selectedCourse.setCourse(editCourseName.getText().toString().trim());
+                selectedCourse.setTime(editTime.getText().toString().trim());
+                selectedCourse.setInstructor(editInstructor.getText().toString().trim());
+
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing or handle cancellation
+            }
+        });
+
+        builder.show();
+    }
+
+    public void onDeleteCourse(final int position) {
+        final Classes selectedCourse = courseList.get(position);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Confirm Deletion");
+        builder.setMessage("Are you sure you want to delete this course?");
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                courseList.remove(position);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing or handle cancellation
+            }
+        });
+
+        builder.show();
     }
 }
