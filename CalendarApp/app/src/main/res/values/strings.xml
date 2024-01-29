@@ -19,4 +19,7 @@
     <string name="timeHint">Time (Ex: 8:00 AM)</string>
     <string name="instructorHint">Instructor (Ex: Dr. Feijoo)</string>
     <string name="add_course">Add Course</string>
+    <string name="titleHint">Assignment Title</string>
+    <string name="dueHint">Due Date (Ex: 2/6/24)</string>
+    <string name="addButton">Add!</string>
 </resources>

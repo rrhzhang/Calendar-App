@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.gallery.AssignmentsFragment">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <EditText
         android:id="@+id/editAssignmentTitle"
@@ -17,7 +17,6 @@
         android:id="@+id/editDue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editAssignmentTitle"
         android:layout_marginTop="8dp"
         android:importantForAutofill="no"
         android:hint="@string/dueHint"
@@ -27,24 +26,8 @@
         android:id="@+id/editCourseAssignments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editDue"
         android:layout_marginTop="8dp"
         android:importantForAutofill="no"
         android:hint="@string/courseHint"
         android:inputType="text" />
-
-    <Button
-        android:id="@+id/addAssignmentsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editCourseAssignments"
-        android:layout_marginTop="16dp"
-        android:text="Add!"/>
-
-    <ListView
-        android:id="@+id/assignmentsView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/addAssignmentsButton"
-        android:layout_marginTop="0dp"/>
-</RelativeLayout>
+</LinearLayout>
