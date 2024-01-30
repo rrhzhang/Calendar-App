@@ -3,6 +3,9 @@ package com.example.calendarapp.ui.gallery;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -20,6 +23,8 @@ import com.example.calendarapp.ui.home.Classes;
 import com.example.calendarapp.ui.home.CourseItemListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class AssignmentsFragment extends Fragment implements AssignmentItemListener {
@@ -30,6 +35,8 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_assignments, container, false);
+
+        super.onCreate(savedInstanceState);
 
         adapter = new AssignmentAdapter(requireContext(), assignmentsList, this);
         ListView assignmentsView = view.findViewById(R.id.assignmentsView);
@@ -64,6 +71,24 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
 
         return view;
     }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true); // Important: Inform the fragment that it has options menu items
+    }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Indicate that this fragment has options menu items
+        setHasOptionsMenu(true);
+    }
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.clear(); // Clear existing menu items if necessary
+        requireActivity().getMenuInflater().inflate(R.menu.sort_menu, menu);
+    }
+
 
     public void onEditAssignment(final int position) {
         final Assignments selectedAssignment = assignmentsList.get(position);
@@ -128,4 +153,45 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
 
         builder.show();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.sort_course) {
+            sortAssignmentsByClass();
+            return true;
+        } else if (itemId == R.id.sort_due) {
+            sortAssignmentsByDueDate();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    private void sortAssignmentsByClass() {
+        Collections.sort(assignmentsList, new Comparator<Assignments>() {
+            @Override
+            public int compare(Assignments assignment1, Assignments assignment2) {
+                return assignment1.getCourse().compareTo(assignment2.getCourse());
+            }
+        });
+        updateAdapter();
+    }
+
+    private void sortAssignmentsByDueDate() {
+        Collections.sort(assignmentsList, new Comparator<Assignments>() {
+            @Override
+            public int compare(Assignments assignment1, Assignments assignment2) {
+                return assignment1.getDue().compareTo(assignment2.getDue());
+            }
+        });
+        updateAdapter();
+    }
+
+    private void updateAdapter() {
+        adapter.updateDataSet(assignmentsList);
+    }
+
+
 }
