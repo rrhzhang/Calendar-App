@@ -1,43 +1,42 @@
 package com.example.calendarapp.ui.gallery;
 
+
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.calendarapp.R;
-import com.example.calendarapp.ui.home.ClassAdapter;
-import com.example.calendarapp.ui.home.Classes;
-import com.example.calendarapp.ui.home.CourseItemListener;
+//import com.google.android.gms.tasks.Tasks;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AssignmentsFragment extends Fragment implements AssignmentItemListener {
 
-    private List<Assignments> assignmentsList = new ArrayList<>();
+    public static List<Assignments> assignmentsList = new ArrayList<>();
+    //public static HashMap<String, ArrayList<Tasks>> todoList = new HashMap<>();
     private AssignmentAdapter adapter;
+    public static ArrayList<Tasks> tasks = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_assignments, container, false);
 
         adapter = new AssignmentAdapter(requireContext(), assignmentsList, this);
-        ListView assignmentsView = view.findViewById(R.id.assignmentsView);
+        ListView assignmentsView = view.findViewById(R.id.tasks);
         assignmentsView.setAdapter(adapter);
 
-        final EditText editAssignmentTitle = view.findViewById(R.id.editAssignmentTitle);
+        final EditText editAssignmentTitle = view.findViewById(R.id.editName);
         final EditText editDue = view.findViewById(R.id.editDue);
-        final EditText editCourseAssignments = view.findViewById(R.id.editCourseAssignments);
+        final EditText editCourseAssignments = view.findViewById(R.id.editDueTime);
 
         Button addAssignmentsButton = view.findViewById(R.id.addAssignmentsButton);
         addAssignmentsButton.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +52,19 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
                 assignment.setCourse(course);
 
                 assignmentsList.add(assignment);
+
+                tasks.add(assignment);
+                /*if (todoList.containsKey(due)) {
+                    tasks = todoList.get(due);
+                    tasks.add(assignment);
+                    todoList.put(due, tasks);
+                }
+                else {
+                    tasks = new ArrayList<>();
+                    tasks.add(assignment);
+                    todoList.put(due, tasks);
+                }*/
+
 
                 adapter.notifyDataSetChanged();
 
@@ -73,9 +85,9 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
 
         View editView = getLayoutInflater().inflate(R.layout.edit_assignment_dialog, null);
 
-        final EditText editAssignmentTitle = editView.findViewById(R.id.editAssignmentTitle);
+        final EditText editAssignmentTitle = editView.findViewById(R.id.editName);
         final EditText editDue = editView.findViewById(R.id.editDue);
-        final EditText editCourseAssignments = editView.findViewById(R.id.editCourseAssignments);
+        final EditText editCourseAssignments = editView.findViewById(R.id.editDueTime);
 
         editAssignmentTitle.setText(selectedAssignment.getTitle());
         editDue.setText(selectedAssignment.getDue());
@@ -127,5 +139,12 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
         });
 
         builder.show();
+    }
+    public List<Assignments> getAssignments () {
+        List<Assignments> arrList = new ArrayList<>();
+        for (Assignments a: assignmentsList) {
+            arrList.add(a);
+        }
+        return arrList;
     }
 }

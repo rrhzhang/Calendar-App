@@ -6,7 +6,7 @@
     tools:context=".ui.gallery.AssignmentsFragment">
 
     <EditText
-        android:id="@+id/editAssignmentTitle"
+        android:id="@+id/editName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:importantForAutofill="no"
@@ -17,14 +17,14 @@
         android:id="@+id/editDue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editAssignmentTitle"
+        android:layout_below="@id/editName"
         android:layout_marginTop="8dp"
         android:importantForAutofill="no"
         android:hint="@string/dueHint"
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/editCourseAssignments"
+        android:id="@+id/editDueTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editDue"
@@ -37,12 +37,12 @@
         android:id="@+id/addAssignmentsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editCourseAssignments"
+        android:layout_below="@id/editDueTime"
         android:layout_marginTop="16dp"
         android:text="Add!"/>
 
     <ListView
-        android:id="@+id/assignmentsView"
+        android:id="@+id/tasks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/addAssignmentsButton"
