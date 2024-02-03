@@ -22,4 +22,7 @@
     <string name="titleHint">Assignment Title</string>
     <string name="dueHint">Due Date (yyyy-MM-dd)</string>
     <string name="addButton">Add!</string>
+    <string name="examDateHint">Exam Date (Ex: yyyy-MM-dd)</string>
+    <string name="examTimeHint">Exam Time (Ex: 8:00 AM)</string>
+    <string name="examLocationHint">Exam Location</string>
 </resources>
