@@ -1,11 +1,12 @@
 package com.example.calendarapp.ui.gallery;
 
-public class Assignments {
+public class Assignments extends Tasks {
     private String title;
     private String due;
     private String course;
 
     public Assignments() {
+        super();
     }
     public Assignments(String title, String due, String instructor) {
         this.title = title;

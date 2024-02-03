@@ -1,5 +1,6 @@
 package com.example.calendarapp.ui.gallery;
 
+
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,14 +13,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.calendarapp.R;
+
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -27,6 +28,11 @@ import java.util.Date;
 import java.util.List;
 
 public class AssignmentsFragment extends Fragment implements AssignmentItemListener {
+
+
+    public static List<Assignments> assignmentsList = new ArrayList<>();
+    //public static HashMap<String, ArrayList<Tasks>> todoList = new HashMap<>();
+    public static ArrayList<Tasks> tasks = new ArrayList<>();
 
     private AssignmentAdapter adapter;
     private AssignmentsViewModel viewModel;
@@ -42,11 +48,16 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_assignments, container, false);
-        ListView assignmentsView = view.findViewById(R.id.assignmentsView);
+
+        adapter = new AssignmentAdapter(requireContext(), assignmentsList, this);
+        ListView assignmentsView = view.findViewById(R.id.tasks);
+        //ListView assignmentsView = view.findViewById(R.id.assignmentsView);
         assignmentsView.setAdapter(adapter);
 
-        final EditText editAssignmentTitle = view.findViewById(R.id.editAssignmentTitle);
+        final EditText editAssignmentTitle = view.findViewById(R.id.editName);
         final EditText editDue = view.findViewById(R.id.editDue);
+        //final EditText editCourseAssignments = view.findViewById(R.id.editDueTime);
+
         final EditText editCourseAssignments = view.findViewById(R.id.editCourseAssignments);
         Button addAssignmentsButton = view.findViewById(R.id.addAssignmentsButton);
 
@@ -62,6 +73,22 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
                 assignment.setDue(due);
                 assignment.setCourse(course);
 
+                assignmentsList.add(assignment);
+
+                tasks.add(assignment);
+                /*if (todoList.containsKey(due)) {
+                    tasks = todoList.get(due);
+                    tasks.add(assignment);
+                    todoList.put(due, tasks);
+                }
+                else {
+                    tasks = new ArrayList<>();
+                    tasks.add(assignment);
+                    todoList.put(due, tasks);
+                }*/
+
+
+                adapter.notifyDataSetChanged();
                 viewModel.addAssignment(assignment);
 
                 editAssignmentTitle.getText().clear();
@@ -110,9 +137,9 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
 
         View editView = getLayoutInflater().inflate(R.layout.edit_assignment_dialog, null);
 
-        final EditText editAssignmentTitle = editView.findViewById(R.id.editAssignmentTitle);
+        final EditText editAssignmentTitle = editView.findViewById(R.id.editName);
         final EditText editDue = editView.findViewById(R.id.editDue);
-        final EditText editCourseAssignments = editView.findViewById(R.id.editCourseAssignments);
+        final EditText editCourseAssignments = editView.findViewById(R.id.editDueTime);
 
         editAssignmentTitle.setText(selectedAssignment.getTitle());
         editDue.setText(selectedAssignment.getDue());
@@ -159,5 +186,12 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
             Log.e("AssignmentsFragment", "Error parsing due date: " + dueDateString, e);
             return null;
         }
+    }
+    public List<Assignments> getAssignments () {
+        List<Assignments> arrList = new ArrayList<>();
+        for (Assignments a: assignmentsList) {
+            arrList.add(a);
+        }
+        return arrList;
     }
 }
