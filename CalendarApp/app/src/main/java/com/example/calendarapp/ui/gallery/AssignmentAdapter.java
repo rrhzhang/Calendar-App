@@ -29,6 +29,12 @@ public class AssignmentAdapter extends ArrayAdapter<Assignments> {
         this.listener = listener;
     }
 
+    public void updateDataSet(List<Assignments> sortedAssignments) {
+        clear();
+        addAll(sortedAssignments);
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
