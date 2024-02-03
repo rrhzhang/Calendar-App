@@ -19,4 +19,10 @@ public class Tasks {
     public String toString() {
         return new String(this.getTitle() + ", "+this.getDue());
     }
+    public void setDue(String due) {
+        this.due = due;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

@@ -26,6 +26,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 
 public class AssignmentsFragment extends Fragment implements AssignmentItemListener {
 
@@ -56,9 +58,9 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
 
         final EditText editAssignmentTitle = view.findViewById(R.id.editName);
         final EditText editDue = view.findViewById(R.id.editDue);
-        //final EditText editCourseAssignments = view.findViewById(R.id.editDueTime);
+        final EditText editCourseAssignments = view.findViewById(R.id.editDueTime);
 
-        final EditText editCourseAssignments = view.findViewById(R.id.editCourseAssignments);
+        //final EditText editCourseAssignments = view.findViewById(R.id.editCourseAssignments);
         Button addAssignmentsButton = view.findViewById(R.id.addAssignmentsButton);
 
         addAssignmentsButton.setOnClickListener(new View.OnClickListener() {
@@ -76,16 +78,6 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
                 assignmentsList.add(assignment);
 
                 tasks.add(assignment);
-                /*if (todoList.containsKey(due)) {
-                    tasks = todoList.get(due);
-                    tasks.add(assignment);
-                    todoList.put(due, tasks);
-                }
-                else {
-                    tasks = new ArrayList<>();
-                    tasks.add(assignment);
-                    todoList.put(due, tasks);
-                }*/
 
 
                 adapter.notifyDataSetChanged();

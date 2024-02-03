@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -89,6 +90,11 @@ public class TodoFragment extends Fragment {
     EditText inputTaskText;
     EditText inputDueText;
     View popupView;
+    ListView listView;
+    ArrayAdapter<Tasks> taskAdapter;
+    int year;
+    int dayOfMonth;
+    int month;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_todo, container, false);
@@ -104,8 +110,9 @@ public class TodoFragment extends Fragment {
         // Set the initial date text
         updateDateText();
 
-        ListView listView = rootView.findViewById(R.id.tasks);
+        listView = rootView.findViewById(R.id.tasks);
         FloatingActionButton addTask = rootView.findViewById(R.id.addItem);
+
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,6 +124,7 @@ public class TodoFragment extends Fragment {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
+
                 handleDateChange(year, month, dayOfMonth, rootView);
             }
         });
@@ -148,9 +156,9 @@ public class TodoFragment extends Fragment {
         String newDate = (month + 1) + "/" + dayOfMonth + "/" + year;
 
         ArrayList<Tasks> uploadTasks = filterTasksByDate(newDate);
-        ArrayAdapter<Tasks> taskAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, uploadTasks);
+        taskAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, uploadTasks);
 
-        ListView listView = rootView.findViewById(R.id.tasks);
+        listView = rootView.findViewById(R.id.tasks);
         listView.setAdapter(taskAdapter);
 
         // Show a Snackbar or perform other actions as needed
@@ -175,8 +183,53 @@ public class TodoFragment extends Fragment {
             addToList();
             inputTaskText.getText().clear();
             inputDueText.getText().clear();
+            updateDateFromCalendar();
             window.dismiss();
         });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Tasks item = (Tasks) parent.getItemAtPosition(position);
+                popupView = View.inflate(requireContext(), R.layout.editdelete_layout, null);
+                Button close = popupView.findViewById(R.id.close);
+                int width = LinearLayout.LayoutParams.MATCH_PARENT;
+                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                PopupWindow window = new PopupWindow(popupView, width, height, true);
+                window.showAtLocation(parent, Gravity.CENTER, 0,0);
+                inputTaskText = (EditText) popupView.findViewById(R.id.editName);
+                inputDueText =  (EditText) popupView.findViewById(R.id.editDue);
+                inputTaskText.setText(item.getTitle());
+                inputDueText.setText(item.getDue());
+                close.setOnClickListener(v -> {
+                    window.dismiss();
+                });
+                Button delete = (Button) popupView.findViewById(R.id.deleteTask);
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        tasksList.remove(item);
+                        listView.setAdapter(taskAdapter);
+                        updateDateFromCalendar();
+                        window.dismiss();
+                    }
+                });
+                Button update = popupView.findViewById(R.id.saveChanges);
+                update.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        item.setDue(inputDueText.getText().toString().trim());
+                        item.setTitle(inputTaskText.getText().toString().trim());
+                        inputTaskText.getText().clear();
+                        inputDueText.getText().clear();
+                        updateDateFromCalendar();
+                        window.dismiss();
+                    }
+                });
+
+            }
+        });
+
+
     }
 
     private void addToList() {
@@ -184,5 +237,14 @@ public class TodoFragment extends Fragment {
         inputDueText = (EditText) popupView.findViewById(R.id.editDue);
         Tasks newTask = new Tasks(inputTaskText.getText().toString().trim(), inputDueText.getText().toString().trim());
         tasksList.add(newTask);
+    }
+    private void updateDateFromCalendar() {
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        String updatedDate = (month+1) +"/"+dayOfMonth +"/"+year;
+        taskAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, filterTasksByDate(updatedDate));
+        Log.d("check", updatedDate);
+        listView.setAdapter(taskAdapter);
     }
 }
