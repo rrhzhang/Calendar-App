@@ -38,7 +38,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tasks"
         app:layout_constraintTop_toTopOf="@+id/tasks"
-        tools:src="@android:drawable/ic_input_add" />
+        tools:src="@android:drawable/ic_input_add"
+        android:contentDescription="TODO" />
 
     <ListView
         android:id="@+id/tasks"
