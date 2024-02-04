@@ -1,4 +1,4 @@
-package com.example.calendarapp.ui.home;
+package com.example.calendarapp.ui.Classes;
 
 public class Classes {
     private String course;

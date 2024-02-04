@@ -1,14 +1,10 @@
-package com.example.calendarapp.ui.slideshow;
+package com.example.calendarapp.ui.Exams;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.calendarapp.ui.gallery.Assignments;
-
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class ExamsViewModel extends ViewModel {

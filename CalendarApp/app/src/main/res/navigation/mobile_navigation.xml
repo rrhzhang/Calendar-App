@@ -7,24 +7,24 @@
 
     <fragment
         android:id="@+id/classes"
-        android:name="com.example.calendarapp.ui.home.ClassesFragment"
+        android:name="com.example.calendarapp.ui.Classes.ClassesFragment"
         android:label="@string/menu_classes"
         tools:layout="@layout/fragment_classes" />
 
     <fragment
         android:id="@+id/assignments"
-        android:name="com.example.calendarapp.ui.gallery.AssignmentsFragment"
+        android:name="com.example.calendarapp.ui.Assignments.AssignmentsFragment"
         android:label="@string/menu_assignments"
         tools:layout="@layout/fragment_assignments" />
 
     <fragment
         android:id="@+id/exams"
-        android:name="com.example.calendarapp.ui.slideshow.ExamsFragment"
+        android:name="com.example.calendarapp.ui.Exams.ExamsFragment"
         android:label="@string/menu_exams" />
 
     <fragment
         android:id="@+id/todo"
-        android:name="com.example.calendarapp.ui.slideshow.TodoFragment"
+        android:name="com.example.calendarapp.ui.Todo.TodoFragment"
         android:label="@string/menu_todo"
         tools:layout="@layout/fragment_todo" />
 </navigation>

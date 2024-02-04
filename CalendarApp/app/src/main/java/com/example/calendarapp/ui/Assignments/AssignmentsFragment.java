@@ -1,4 +1,4 @@
-package com.example.calendarapp.ui.gallery;
+package com.example.calendarapp.ui.Assignments;
 
 
 import android.content.DialogInterface;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;

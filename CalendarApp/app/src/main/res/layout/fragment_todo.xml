@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/_parent_layout"
-    tools:context=".ui.slideshow.TodoFragment">
+    tools:context=".ui.Todo.TodoFragment">
 
     <CalendarView
         android:id="@+id/calendarView"
