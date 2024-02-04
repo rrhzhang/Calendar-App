@@ -1,63 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.Assignments.AssignmentsFragment">
 
-    <EditText
-        android:id="@+id/editExamCourse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:importantForAutofill="no"
-        android:hint="@string/courseHint"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/editExamDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editExamCourse"
-        android:layout_marginTop="8dp"
-        android:importantForAutofill="no"
-        android:hint="@string/examDateHint"
-        android:inputType="text"
-        tools:ignore="TextFields" />
-
-    <EditText
-        android:id="@+id/editExamTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editExamDate"
-        android:layout_marginTop="8dp"
-        android:importantForAutofill="no"
-        android:hint="@string/examTimeHint"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/editExamLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editExamTime"
-        android:layout_marginTop="8dp"
-        android:importantForAutofill="no"
-        android:hint="@string/examLocationHint"
-        android:inputType="text" />
 
     <Button
         android:id="@+id/addExamsButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editExamLocation"
-        android:backgroundTint="@color/lightYellow"
-        android:textColor="@color/brown"
-        android:layout_marginTop="16dp"
-        android:text="Add Exam"/>
+        android:backgroundTint="@color/purple"
+        android:text="Add Exam"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/examsList"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ListView
         android:id="@+id/examsList"
         android:layout_width="match_parent"
+        android:divider="@null"
         android:layout_height="match_parent"
         android:layout_below="@id/addExamsButton"
+        android:layout_marginBottom="55dp"
         android:layout_marginTop="0dp"/>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

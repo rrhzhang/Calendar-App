@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="5dp"
-    android:descendantFocusability="blocksDescendants">
+    android:padding="5dp">
 
-    <TextView
-        android:id="@+id/examInfoTextView"
-        android:layout_width="303dp"
-        android:layout_height="57dp"
-        android:layout_weight="1"
-        android:importantForAutofill="no"
-        android:text="Exam Info"
-        android:textSize="13sp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/listview_round_corners"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:descendantFocusability="blocksDescendants">
 
+        <TextView
+            android:id="@+id/examInfoTextView"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:text="Exam Info"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/deleteExamButton"
+            app:layout_constraintHorizontal_bias="0.0" />
 
-    <Button
-        android:id="@+id/deleteExamButton"
-        android:layout_width="62dp"
-        android:backgroundTint="@color/brown"
-        android:layout_height="35dp"
-        android:importantForAutofill="no"
-        android:text="Del"
-        android:textSize="12sp" />
+        <Button
+            android:id="@+id/deleteExamButton"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/pink"
+            android:text="Del"
+            android:textSize="14sp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@+id/examInfoTextView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -39,35 +39,51 @@ public class ExamsFragment extends Fragment implements ExamsItemListener {
         ListView examsView = view.findViewById(R.id.examsList);
         examsView.setAdapter(adapter);
 
-        final EditText editExamCourse = view.findViewById(R.id.editExamCourse);
-        final EditText editExamDate = view.findViewById(R.id.editExamDate);
-        final EditText editExamTime = view.findViewById(R.id.editExamTime);
-        final EditText editExamLocation = view.findViewById(R.id.editExamLocation);
         Button addExamsButton = view.findViewById(R.id.addExamsButton);
 
         addExamsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String examCourse = editExamCourse.getText().toString().trim();
-                String examDate = editExamDate.getText().toString().trim();
-                String examTime = editExamTime.getText().toString().trim();
-                String examLocation = editExamLocation.getText().toString().trim();
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                builder.setTitle("Add Exam");
 
+                View dialogView = getLayoutInflater().inflate(R.layout.exam_dialog, null);
+                builder.setView(dialogView);
 
-                Exams exam = new Exams();
-                exam.setCourse(examCourse);
-                exam.setDate(examDate);
-                exam.setTime(examTime);
-                exam.setLocation(examLocation);
+                final EditText editExamCourse = dialogView.findViewById(R.id.editExamCourseDialog);
+                final EditText editExamDate = dialogView.findViewById(R.id.editExamDateDialog);
+                final EditText editExamTime = dialogView.findViewById(R.id.editExamTimeDialog);
+                final EditText editExamLocation = dialogView.findViewById(R.id.editExamLocationDialog);
 
-                viewModel.addExam(exam);
+                builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String examCourse = editExamCourse.getText().toString().trim();
+                        String examDate = editExamDate.getText().toString().trim();
+                        String examTime = editExamTime.getText().toString().trim();
+                        String examLocation = editExamLocation.getText().toString().trim();
 
-                editExamCourse.getText().clear();
-                editExamDate.getText().clear();
-                editExamTime.getText().clear();
-                editExamLocation.getText().clear();
+                        Exams exam = new Exams();
+                        exam.setCourse(examCourse);
+                        exam.setDate(examDate);
+                        exam.setTime(examTime);
+                        exam.setLocation(examLocation);
+
+                        viewModel.addExam(exam);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
+
 
         viewModel.getExamsList().observe(getViewLifecycleOwner(), new Observer<List<Exams>>() {
             @Override

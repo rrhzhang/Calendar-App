@@ -55,9 +55,6 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
         //ListView assignmentsView = view.findViewById(R.id.assignmentsView);
         assignmentsView.setAdapter(adapter);
 
-        final EditText editAssignmentTitle = view.findViewById(R.id.editName);
-        final EditText editDue = view.findViewById(R.id.editDue);
-        final EditText editCourseAssignments = view.findViewById(R.id.editDueTime);
 
         //final EditText editCourseAssignments = view.findViewById(R.id.editCourseAssignments);
         Button addAssignmentsButton = view.findViewById(R.id.addAssignmentsButton);
@@ -65,28 +62,46 @@ public class AssignmentsFragment extends Fragment implements AssignmentItemListe
         addAssignmentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String assignmentTitle = editAssignmentTitle.getText().toString().trim();
-                String due = editDue.getText().toString().trim();
-                String course = editCourseAssignments.getText().toString().trim();
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                builder.setTitle("Add Assignment");
 
-                Assignments assignment = new Assignments();
-                assignment.setTitle(assignmentTitle);
-                assignment.setDue(due);
-                assignment.setCourse(course);
+                LayoutInflater inflater = requireActivity().getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.assignment_dialog, null);
+                builder.setView(dialogView);
 
-                assignmentsList.add(assignment);
+                final EditText editAssignmentTitle = dialogView.findViewById(R.id.editAssignmentTitle);
+                final EditText editAssignmentDue = dialogView.findViewById(R.id.editAssignmentDue);
+                final EditText editAssignmentCourse = dialogView.findViewById(R.id.editAssignmentCourse);
 
-                tasks.add(assignment);
+                builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String title = editAssignmentTitle.getText().toString().trim();
+                        String due = editAssignmentDue.getText().toString().trim();
+                        String course = editAssignmentCourse.getText().toString().trim();
 
+                        Assignments newAssignment = new Assignments();
+                        newAssignment.setTitle(title);
+                        newAssignment.setDue(due);
+                        newAssignment.setCourse(course);
+                        assignmentsList.add(newAssignment);
 
-                adapter.notifyDataSetChanged();
-                viewModel.addAssignment(assignment);
+                        adapter.notifyDataSetChanged();
+                        viewModel.addAssignment(newAssignment);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
 
-                editAssignmentTitle.getText().clear();
-                editDue.getText().clear();
-                editCourseAssignments.getText().clear();
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
+
 
         viewModel.getAssignmentsList().observe(getViewLifecycleOwner(), new Observer<List<Assignments>>() {
             @Override

@@ -1,52 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.Assignments.AssignmentsFragment">
 
-    <EditText
-        android:id="@+id/editName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:importantForAutofill="no"
-        android:hint="@string/titleHint"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/editDue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editName"
-        android:layout_marginTop="8dp"
-        android:importantForAutofill="no"
-        android:hint="@string/dueHint"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/editDueTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editDue"
-        android:layout_marginTop="8dp"
-        android:importantForAutofill="no"
-        android:hint="@string/courseHint"
-        android:inputType="text" />
 
     <Button
         android:id="@+id/addAssignmentsButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editDueTime"
-        android:backgroundTint="@color/lightYellow"
-        android:textColor="@color/brown"
-        android:layout_marginTop="16dp"
-        android:text="Add Assignment"/>
+        android:backgroundTint="@color/purple"
+        android:text="Add Assignment"
+        android:layout_marginBottom="0dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tasks" />
 
     <ListView
         android:id="@+id/tasks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/addAssignmentsButton"
-        android:layout_marginTop="0dp"/>
-</RelativeLayout>
+        android:divider="@null"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="55dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

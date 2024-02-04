@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A9A9A9"
+    android:background="@color/tan"
     android:orientation="vertical">
 
     <Button
         android:id="@+id/close"
         android:layout_width="52dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/lightBrown"
+        android:backgroundTint="@color/pink"
         android:text="X" />
 
     <EditText
@@ -33,7 +33,7 @@
         android:layout_marginTop="8dp"
         android:hint="@string/dueHint"
         android:importantForAutofill="no"
-        android:inputType="text"
+        android:inputType="date"
         android:textColor="#000000"
         android:cursorVisible="true"
         android:ems="10"
@@ -45,8 +45,8 @@
         android:id="@+id/saveChanges"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/brown"
-        android:backgroundTint="@color/lightYellow"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/purple"
         android:text="Save Changes" />
 
 </LinearLayout>
