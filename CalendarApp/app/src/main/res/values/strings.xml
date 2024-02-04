@@ -20,9 +20,9 @@
     <string name="instructorHint">Instructor (Ex: Dr. Feijoo)</string>
     <string name="add_course">Add Course</string>
     <string name="titleHint">Assignment Title</string>
-    <string name="dueHint">Due Date (yyyy-MM-dd)</string>
+    <string name="dueHint">Due Date (m/d/yyyy)</string>
     <string name="addButton">Add!</string>
-    <string name="examDateHint">Exam Date (Ex: yyyy-MM-dd)</string>
+    <string name="examDateHint">Exam Date (Ex: m/d/yyyy)</string>
     <string name="examTimeHint">Exam Time (Ex: 8:00 AM)</string>
     <string name="examLocationHint">Exam Location</string>
 </resources>
