@@ -1,52 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.Classes.ClassesFragment">
 
-    <EditText
-        android:id="@+id/editCourseName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:importantForAutofill="no"
-        android:hint="@string/courseHint"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/editTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editCourseName"
-        android:layout_marginTop="8dp"
-        android:importantForAutofill="no"
-        android:hint="@string/timeHint"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/editInstructor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTime"
-        android:layout_marginTop="8dp"
-        android:importantForAutofill="no"
-        android:hint="@string/instructorHint"
-        android:inputType="text" />
-
     <Button
         android:id="@+id/addButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editInstructor"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/purple"
         android:text="@string/add_course"
-        android:textColor="@color/brown"
-        android:backgroundTint="@color/lightYellow"/>
+        android:textColor="@color/black"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/classList" />
 
     <ListView
         android:id="@+id/classList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="0dp"
-        android:layout_below="@id/addButton"/>
-</RelativeLayout>
+        android:layout_below="@id/addButton"
+        android:layout_marginBottom="55dp"
+        android:divider="@null" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/gold"
+            android:background="@color/purple"
             app:popupTheme="@style/Theme.CalendarApp.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>

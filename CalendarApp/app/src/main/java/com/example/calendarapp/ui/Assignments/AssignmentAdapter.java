@@ -1,6 +1,10 @@
 package com.example.calendarapp.ui.Assignments;
 
 import android.content.Context;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,9 +48,24 @@ public class AssignmentAdapter extends ArrayAdapter<Assignments> {
         Button deleteAssignmentButton = convertView.findViewById(R.id.deleteAssignmentButton);
 
         if (currentAssignment != null) {
-            String displayText = currentAssignment.getTitle() + "\nDue: " + currentAssignment.getDue() +
-                    "\nCourse: " + currentAssignment.getCourse();
-            assignmentInfoTextView.setText(displayText);
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+
+            String title = currentAssignment.getTitle();
+            SpannableString titleSpannable = new SpannableString(title);
+            titleSpannable.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, title.length(), 0);
+            titleSpannable.setSpan(new RelativeSizeSpan(1.7f), 0, title.length(), 0);
+
+            String due = "\nDue: " + currentAssignment.getDue();
+            SpannableString dueSpannable = new SpannableString(due);
+
+            String course = "\nCourse: " + currentAssignment.getCourse();
+            SpannableString courseSpannable = new SpannableString(course);
+
+            builder.append(titleSpannable);
+            builder.append(dueSpannable);
+            builder.append(courseSpannable);
+
+            assignmentInfoTextView.setText(builder, TextView.BufferType.SPANNABLE);
 
             editAssignmentButton.setOnClickListener(new View.OnClickListener() {
                 @Override

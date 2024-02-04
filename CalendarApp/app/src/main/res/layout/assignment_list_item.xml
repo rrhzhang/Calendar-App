@@ -1,33 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:padding="5dp">
 
-    <TextView
-        android:id="@+id/assignmentInfoTextView"
-        android:layout_width="303dp"
-        android:layout_height="57dp"
-        android:layout_weight="1"
-        android:importantForAutofill="no"
-        android:text="Assignment Info"
-        android:textSize="13sp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/listview_round_corners"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
-    <Button
-        android:id="@+id/editAssignmentButton"
-        android:layout_width="62dp"
-        android:layout_height="35dp"
-        android:importantForAutofill="no"
-        android:text="Edit"
-        android:textSize="12sp" />
+        <TextView
+            android:id="@+id/assignmentInfoTextView"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:text="Assignment Info"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.064"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/deleteAssignmentButton"
-        android:layout_width="62dp"
-        android:layout_height="35dp"
-        android:importantForAutofill="no"
-        android:text="Del"
-        android:backgroundTint="@color/brown"
-        android:textSize="12sp" />
+        <Button
+            android:id="@+id/editAssignmentButton"
+            android:layout_width="70dp"
+            android:layout_marginTop="4dp"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:text="Edit"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/purple"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/assignmentInfoTextView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/deleteAssignmentButton"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/pink"
+            android:importantForAutofill="no"
+            android:text="Del"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editAssignmentButton"
+            app:layout_constraintStart_toEndOf="@+id/assignmentInfoTextView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

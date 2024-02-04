@@ -30,32 +30,45 @@ public class ClassesFragment extends Fragment implements CourseItemListener {
         ListView listView = view.findViewById(R.id.classList);
         listView.setAdapter(adapter);
 
-        final EditText editCourseName = view.findViewById(R.id.editCourseName);
-        final EditText editTime = view.findViewById(R.id.editTime);
-        final EditText editInstructor = view.findViewById(R.id.editInstructor);
 
         Button addButton = view.findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String courseName = editCourseName.getText().toString().trim();
-                String time = editTime.getText().toString().trim();
-                String instructor = editInstructor.getText().toString().trim();
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                builder.setTitle("Add Course");
 
-                Classes newCourse = new Classes();
-                newCourse.setCourse(courseName);
-                newCourse.setTime(time);
-                newCourse.setInstructor(instructor);
+                View dialogView = getLayoutInflater().inflate(R.layout.course_dialog, null);
+                builder.setView(dialogView);
 
-                courseList.add(newCourse);
+                final EditText editCourseName = dialogView.findViewById(R.id.editCourseNameDialog);
+                final EditText editTime = dialogView.findViewById(R.id.editTimeDialog);
+                final EditText editInstructor = dialogView.findViewById(R.id.editInstructorDialog);
 
-                adapter.notifyDataSetChanged();
+                builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String courseName = editCourseName.getText().toString().trim();
+                        String time = editTime.getText().toString().trim();
+                        String instructor = editInstructor.getText().toString().trim();
 
-                editCourseName.getText().clear();
-                editTime.getText().clear();
-                editInstructor.getText().clear();
+                        Classes newCourse = new Classes(courseName, time, instructor);
+                        courseList.add(newCourse);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
+
 
         return view;
     }

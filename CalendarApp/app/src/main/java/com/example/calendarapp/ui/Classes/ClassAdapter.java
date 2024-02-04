@@ -1,6 +1,10 @@
 package com.example.calendarapp.ui.Classes;
 
 import android.content.Context;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.example.calendarapp.R;
 
@@ -38,9 +43,24 @@ public class ClassAdapter extends ArrayAdapter<Classes> {
         Button deleteButton = convertView.findViewById(R.id.deleteButton);
 
         if (currentCourse != null) {
-            String displayText = currentCourse.getCourse() + "\nTime: " + currentCourse.getTime() +
-                    "\nInstructor: " + currentCourse.getInstructor();
-            courseInfoTextView.setText(displayText);
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+
+            String course = currentCourse.getCourse();
+            SpannableString courseSpannable = new SpannableString(course);
+            courseSpannable.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, course.length(), 0);
+            courseSpannable.setSpan(new RelativeSizeSpan(1.7f), 0, course.length(), 0);
+
+            String time = "\nTime: " + currentCourse.getTime();
+            SpannableString timeSpannable = new SpannableString(time);
+
+            String instructor = "\nInstructor: " + currentCourse.getInstructor();
+            SpannableString instructorSpannable = new SpannableString(instructor);
+
+            builder.append(courseSpannable);
+            builder.append(timeSpannable);
+            builder.append(instructorSpannable);
+
+            courseInfoTextView.setText(builder, TextView.BufferType.SPANNABLE);
 
             editButton.setOnClickListener(new View.OnClickListener() {
                 @Override
