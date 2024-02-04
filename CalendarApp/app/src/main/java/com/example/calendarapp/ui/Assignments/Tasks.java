@@ -1,4 +1,4 @@
-package com.example.calendarapp.ui.gallery;
+package com.example.calendarapp.ui.Assignments;
 
 public class Tasks {
     private String title;

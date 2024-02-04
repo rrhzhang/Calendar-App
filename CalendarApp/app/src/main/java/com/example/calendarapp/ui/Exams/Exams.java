@@ -1,5 +1,4 @@
-package com.example.calendarapp.ui.slideshow;
-import java.util.Date;
+package com.example.calendarapp.ui.Exams;
 
 public class Exams {
     private String date;

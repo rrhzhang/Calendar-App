@@ -1,10 +1,8 @@
-package com.example.calendarapp.ui.gallery;
+package com.example.calendarapp.ui.Assignments;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.example.calendarapp.ui.gallery.Assignments;
 
 import java.util.ArrayList;
 import java.util.Collections;

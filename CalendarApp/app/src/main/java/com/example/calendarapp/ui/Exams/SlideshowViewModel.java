@@ -1,4 +1,4 @@
-package com.example.calendarapp.ui.slideshow;
+package com.example.calendarapp.ui.Exams;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

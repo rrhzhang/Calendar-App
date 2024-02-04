@@ -1,4 +1,4 @@
-package com.example.calendarapp.ui.home;
+package com.example.calendarapp.ui.Classes;
 
 public interface CourseItemListener {
     void onEditCourse(int position);

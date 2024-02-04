@@ -1,19 +1,15 @@
-package com.example.calendarapp.ui.slideshow;
+package com.example.calendarapp.ui.Exams;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import androidx.annotation.NonNull;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
@@ -21,15 +17,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.calendarapp.R;
-import com.example.calendarapp.ui.gallery.AssignmentAdapter;
-import com.example.calendarapp.ui.gallery.AssignmentItemListener;
-import com.example.calendarapp.ui.gallery.Assignments;
-import com.example.calendarapp.ui.gallery.AssignmentsViewModel;
 
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ExamsFragment extends Fragment implements ExamsItemListener {

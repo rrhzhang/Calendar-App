@@ -1,4 +1,4 @@
-package com.example.calendarapp.ui.slideshow;
+package com.example.calendarapp.ui.Exams;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,12 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.calendarapp.R;
-import com.example.calendarapp.ui.gallery.AssignmentItemListener;
-import com.example.calendarapp.ui.gallery.Assignments;
-import com.example.calendarapp.ui.home.Classes;
-import com.example.calendarapp.ui.home.CourseItemListener;
-
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.List;
 
