@@ -28,5 +28,6 @@
         android:layout_height="35dp"
         android:importantForAutofill="no"
         android:text="Del"
+        android:backgroundTint="@color/brown"
         android:textSize="12sp" />
 </LinearLayout>

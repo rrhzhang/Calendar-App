@@ -9,7 +9,7 @@
         android:id="@+id/close"
         android:layout_width="52dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FF0000"
+        android:backgroundTint="@color/brown"
         android:text="X" />
 
     <EditText
@@ -45,14 +45,15 @@
         android:id="@+id/deleteTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FF0000"
+        android:backgroundTint="@color/lightBrown"
         android:text="Delete Task" />
 
     <Button
         android:id="@+id/saveChanges"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_green_dark"
+        android:textColor="@color/brown"
+        android:backgroundTint="@color/lightYellow"
         android:text="Save Changes" />
 
 </LinearLayout>
