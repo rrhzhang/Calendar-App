@@ -60,10 +60,8 @@ public class TodoFragment extends Fragment {
         parent = rootView.findViewById(R.id._parent_layout);
 
 
-        // Initialize calendar with the current date
         calendar = Calendar.getInstance();
 
-        // Set the initial date text
         updateDateText();
 
         listView = rootView.findViewById(R.id.tasks);
@@ -117,7 +115,6 @@ public class TodoFragment extends Fragment {
         listView = rootView.findViewById(R.id.tasks);
         listView.setAdapter(taskAdapter);
 
-        // Show a Snackbar or perform other actions as needed
         Snackbar.make(rootView, "Tasks loaded for selected date", Snackbar.LENGTH_LONG).show();
     }
 
