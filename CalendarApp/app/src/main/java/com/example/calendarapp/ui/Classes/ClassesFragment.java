@@ -27,7 +27,7 @@ public class ClassesFragment extends Fragment implements CourseItemListener {
         View view = inflater.inflate(R.layout.fragment_classes, container, false);
 
         adapter = new ClassAdapter(requireContext(), courseList, this);
-        ListView listView = view.findViewById(R.id.listView);
+        ListView listView = view.findViewById(R.id.classList);
         listView.setAdapter(adapter);
 
         final EditText editCourseName = view.findViewById(R.id.editCourseName);

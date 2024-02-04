@@ -39,12 +39,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editInstructor"
         android:layout_marginTop="16dp"
-        android:text="@string/add_course"/>
+        android:text="@string/add_course"
+        android:textColor="@color/brown"
+        android:backgroundTint="@color/lightYellow"/>
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/classList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/addButton"
-        android:layout_marginTop="0dp"/>
+        android:layout_marginTop="0dp"
+        android:layout_below="@id/addButton"/>
 </RelativeLayout>

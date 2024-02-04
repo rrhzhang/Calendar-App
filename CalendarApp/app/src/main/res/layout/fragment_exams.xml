@@ -49,8 +49,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/editExamLocation"
+        android:backgroundTint="@color/lightYellow"
+        android:textColor="@color/brown"
         android:layout_marginTop="16dp"
-        android:text="Add!"/>
+        android:text="Add Exam"/>
 
     <ListView
         android:id="@+id/examsList"

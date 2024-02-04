@@ -28,7 +28,7 @@ public class ClassAdapter extends ArrayAdapter<Classes> {
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.course_list_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.classes_list_item, parent, false);
         }
 
         Classes currentCourse = getItem(position);

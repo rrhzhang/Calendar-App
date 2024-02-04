@@ -19,6 +19,7 @@
     <Button
         android:id="@+id/deleteExamButton"
         android:layout_width="62dp"
+        android:backgroundTint="@color/brown"
         android:layout_height="35dp"
         android:importantForAutofill="no"
         android:text="Del"
